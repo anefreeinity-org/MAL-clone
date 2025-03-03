@@ -9,6 +9,7 @@ export const SeasonalAnime = () => {
     "Dr Stone",
     "Sakamoto Days",
   ];
+  
   return (
     <div className="text-gray-200 px-4 flex gap-4 justify-self-start overflow-x-auto whitespace-nowrap max-w-full scrollbar-hide">
       {seasonalAnime.map((anime, index) => (
