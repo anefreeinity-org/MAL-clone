@@ -22,11 +22,9 @@ export const PopularAnime = () => {
 
   return (
     <div className="text-gray-200 px-4 flex gap-4 overflow-x-auto whitespace-nowrap max-w-full scrollbar-hide snap-x snap-mandatory">
-      {popularAnime?.data?.map((anime) => (
-        <Card key={anime.mal_id} anime={anime} />
+      {popularAnime?.data?.map((anime, index) => (
+        <Card key={index} anime={anime} />
       ))}
     </div>
   );
 };
-
-//https://api.jikan.moe/v4/top/anime
