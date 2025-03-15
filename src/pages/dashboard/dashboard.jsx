@@ -1,4 +1,4 @@
-import { PopularAnime } from "./populor-anime";
+import { PopularAnime } from "./popular-anime";
 import { RecommendedAnime } from "./recommended-anime";
 import { SeasonalAnime } from "./seasonal-anime";
 

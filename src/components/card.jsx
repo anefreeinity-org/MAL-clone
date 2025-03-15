@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Card = ({ anime, ...props }) => {
+export const Card = ({ anime, width = "w-auto", ...props }) => {
   return (
     <div
-      className="w-44 h-[14.5rem] bg-gray-600 rounded-2xl shadow-lg overflow-hidden flex-none snap-start flex flex-col justify-between"
+      className={`${width} max-w-44 h-[14.5rem] bg-gray-600 rounded-2xl shadow-lg overflow-hidden flex-none snap-start flex flex-col justify-between`}
       key={anime.mal_id}
       {...props}
     >
@@ -14,7 +14,7 @@ export const Card = ({ anime, ...props }) => {
       />
       <div className="m-auto w-full px-4">
         <h3 className="font-semibold text-sm text-gray-200 line-clamp-2 overflow-hidden">
-          {anime.title_english || anime.title}
+          {anime.title || anime.title_english}
         </h3>
       </div>
     </div>

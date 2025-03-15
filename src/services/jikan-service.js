@@ -13,16 +13,16 @@ export class JikanService {
     return response;
   }
 
-  async getRecommendedAnime(page = 2) {
+  async getRecommendedAnime(page = 1) {
     const response = await this.apiService.fetch(
-      `${this.url}/seasons/now?page=${page}`
+      `${this.url}/recommendations/anime?page=${page}`
     );
     return response;
   }
 
-  async getPopularAnime(page = 3) {
+  async getPopularAnime(page = 1) {
     const response = await this.apiService.fetch(
-      `${this.url}/seasons/now?page=${page}`
+      `${this.url}/top/anime?page=${page}`
     );
     return response;
   }
