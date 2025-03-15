@@ -41,12 +41,12 @@ export const SeasonalAnime = () => {
         <div className="text-gray-200 text-2xl px-4 font-semibold font-sans select-none">
           Seasonal Anime
         </div>
-        <div
+        <button
           className="flex items-center justify-center w-16 h-8 rounded-full border-2 border-gray-600 hover:border-white-800 text-gray-200 text-sm font-semibold font-sans cursor-pointer hover:bg-gray-700 transition"
           onClick={handelViewAll}
         >
           view all
-        </div>
+        </button>
       </div>
       <div className="relative">
         <div
