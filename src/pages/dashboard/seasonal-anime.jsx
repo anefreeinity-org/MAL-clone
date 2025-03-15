@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const SeasonalAnime = () => {
   const [seasonalAnime, setSeasonalAnime] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const scrollContainerRef = useRef(null);
   const jikanService = new JikanService();
   const navigate = useNavigate();
@@ -16,9 +17,12 @@ export const SeasonalAnime = () => {
   useEffect(() => {
     const fetchSeasonalAnime = async () => {
       try {
+        setIsLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 500));
         const seasonalAnime = await jikanService.getSeasonalAnime();
         console.log("Seasonal Anime:", seasonalAnime);
         setSeasonalAnime(seasonalAnime);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching seasonal anime:", error);
       }
@@ -42,7 +46,7 @@ export const SeasonalAnime = () => {
           Seasonal Anime
         </div>
         <button
-          className="flex items-center justify-center w-16 h-8 rounded-full border-2 border-gray-600 hover:border-white-800 text-gray-200 text-sm font-semibold font-sans cursor-pointer hover:bg-gray-700 transition"
+          className="mr-4 px-2 py-1 rounded-full border-2 border-gray-600 hover:border-white-800 text-gray-200 text-sm font-semibold font-sans cursor-pointer hover:bg-gray-700 transition"
           onClick={handelViewAll}
         >
           view all
@@ -55,6 +59,7 @@ export const SeasonalAnime = () => {
         >
           {seasonalAnime?.data?.map((anime, index) => (
             <Card
+              width="w-44"
               key={index}
               anime={anime}
               onMouseOver={() => setHoveredIndex(index)}
@@ -63,6 +68,7 @@ export const SeasonalAnime = () => {
               }
             />
           ))}
+          {isLoading && <p>loading...</p>}
         </div>
         <div className="absolute top-1/2 -translate-y-1/2 left-2 bg-transparent w-32 h-32 opacity-0 hover:opacity-100 group">
           <LeftShift scrollContainerRef={scrollContainerRef} />

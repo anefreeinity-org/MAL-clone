@@ -15,6 +15,7 @@ export const PopularAnime = () => {
   useEffect(() => {
     const fetchPopularAnime = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const popularAnime = await jikanService.getPopularAnime();
         console.log("Popular Anime:", popularAnime);
         setPopularAnime(popularAnime);
@@ -31,8 +32,8 @@ export const PopularAnime = () => {
 
   const handleViewAnimeDetails = (name) => {
     const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`/${nameWithUnderscore}`)
-  }
+    navigate(`/${nameWithUnderscore}`);
+  };
 
   return (
     <div className="flex flex-col gap-4 rounded-2xl">
@@ -41,7 +42,7 @@ export const PopularAnime = () => {
           Popular Anime
         </div>
         <button
-          className="flex items-center justify-center w-16 h-8 rounded-full border-2 border-gray-600 text-gray-200 text-sm font-semibold font-sans cursor-pointer hover:bg-gray-600 transition"
+          className="mr-4 px-2 py-1 rounded-full border-2 border-gray-600 text-gray-200 text-sm font-semibold font-sans cursor-pointer hover:bg-gray-600 transition"
           onClick={handelViewAll}
         >
           view all
@@ -54,9 +55,12 @@ export const PopularAnime = () => {
         >
           {popularAnime?.data?.map((anime, index) => (
             <Card
-              key={index} 
+              width="w-44"
+              key={index}
               anime={anime}
-              onClick={() => handleViewAnimeDetails(anime.title || anime.title_english)}
+              onClick={() =>
+                handleViewAnimeDetails(anime.title || anime.title_english)
+              }
             />
           ))}
         </div>
