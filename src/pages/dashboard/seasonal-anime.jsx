@@ -5,6 +5,7 @@ import { Card } from "../../components/card";
 import LeftShift from "../../components/left-shift";
 import RightShift from "../../components/right-shift";
 import { useNavigate } from "react-router-dom";
+import handleAnimeDetails from "../utilities/handle-anime-details";
 
 export const SeasonalAnime = () => {
   const [seasonalAnime, setSeasonalAnime] = useState(null);
@@ -34,11 +35,6 @@ export const SeasonalAnime = () => {
     navigate("/seasonal-anime");
   };
 
-  const handleViewAnimeDetails = (name) => {
-    const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`/${nameWithUnderscore}`);
-  };
-
   return (
     <div className="flex flex-col gap-4 rounded-2xl">
       <div className="flex flex-row items-center justify-between">
@@ -64,19 +60,25 @@ export const SeasonalAnime = () => {
               anime={anime}
               onMouseOver={() => setHoveredIndex(index)}
               onClick={() =>
-                handleViewAnimeDetails(anime.title || anime.title_english)
+                handleAnimeDetails(
+                  anime.title || anime.title_english,
+                  anime.mal_id,
+                  navigate
+                )
               }
             />
           ))}
-          {isLoading && 
-            // <p>loading...</p>
-            Array.from({length: 8}).map((_, index) => (
-              <div key={index} className="w-full max-w-44 h-[14.5rem] rounded-2xl border border-blue-200 p-4">
-              <div className="flex flex-col items-center animate-pulse space-y-4">
-                <div className="w-full h-44 rounded-lg bg-gray-200"></div>
-                <div className="m-auto w-full h-4 rounded bg-gray-200"></div>
+          {isLoading &&
+            Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="w-full max-w-44 h-[14.5rem] rounded-2xl border border-blue-200 p-4"
+              >
+                <div className="flex flex-col items-center animate-pulse space-y-4">
+                  <div className="w-full h-44 rounded-lg bg-gray-200"></div>
+                  <div className="m-auto w-full h-4 rounded bg-gray-200"></div>
+                </div>
               </div>
-            </div>
             ))}
         </div>
         <div className="absolute top-1/2 -translate-y-1/2 left-2 bg-transparent w-32 h-32 opacity-0 hover:opacity-100 group">

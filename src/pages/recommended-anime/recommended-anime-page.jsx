@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Card } from "../../components/card";
 import { JikanService } from "../../services/jikan-service";
 import { useNavigate } from "react-router-dom";
+import useInfiniteScroll from "../utilities/use-infinite-scroll";
+import handleAnimeDetails from "../utilities/handle-anime-details";
 
 const RecommendedAnimePage = () => {
   const [recommendedAnime, setRecommendedAnime] = useState([]);
@@ -11,11 +13,6 @@ const RecommendedAnimePage = () => {
   const navigate = useNavigate();
   const debounceTimeout = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleViewAnimeDetails = (name) => {
-    const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`${nameWithUnderscore}`);
-  };
 
   const fetchRecommendedAnime = async () => {
     try {
@@ -36,21 +33,12 @@ const RecommendedAnimePage = () => {
   };
 
   const handleScroll = () => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    if (
-      container.scrollHeight - container.scrollTop <=
-      container.clientHeight + 1
-    ) {
-      if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
-      }
-
-      debounceTimeout.current = setTimeout(() => {
-        fetchRecommendedAnime();
-      }, 1000);
-    }
+    useInfiniteScroll(
+      containerRef,
+      debounceTimeout,
+      fetchRecommendedAnime,
+      1000
+    );
   };
 
   useEffect(() => {
@@ -80,13 +68,16 @@ const RecommendedAnimePage = () => {
           <Card
             anime={user.entry[0]}
             key={index}
-            onClick={() => {
-              handleViewAnimeDetails(anime.title || anime.title_english);
-            }}
+            onClick={() =>
+              handleAnimeDetails(
+                user.entry[0].title || user.entry[0].title_english,
+                user.entry[0].mal_id,
+                navigate
+              )
+            }
           />
         ))}
         {isLoading &&
-          // <p>loading...</p>
           Array.from({ length: 100 }).map((_, index) => (
             <div
               key={index}

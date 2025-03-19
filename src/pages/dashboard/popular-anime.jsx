@@ -5,6 +5,7 @@ import { Card } from "../../components/card";
 import LeftShift from "../../components/left-shift";
 import RightShift from "../../components/right-shift";
 import { useNavigate } from "react-router-dom";
+import handleAnimeDetails from "../utilities/handle-anime-details";
 
 export const PopularAnime = () => {
   const [popularAnime, setPopularAnime] = useState(null);
@@ -33,11 +34,6 @@ export const PopularAnime = () => {
     navigate("/popular-anime");
   };
 
-  const handleViewAnimeDetails = (name) => {
-    const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`/${nameWithUnderscore}`);
-  };
-
   return (
     <div className="flex flex-col gap-4 rounded-2xl">
       <div className="flex flex-row items-center justify-between">
@@ -62,12 +58,15 @@ export const PopularAnime = () => {
               key={index}
               anime={anime}
               onClick={() =>
-                handleViewAnimeDetails(anime.title || anime.title_english)
+                handleAnimeDetails(
+                  anime.title || anime.title_english,
+                  anime.mal_id,
+                  navigate
+                )
               }
             />
           ))}
           {isLoading &&
-            //<p>Loading...</p>
             Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}

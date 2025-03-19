@@ -24,7 +24,7 @@ const routes = [
     element: <PopularAnimePage />,
   },
   {
-    path: ":anime-details",
+    path: ":animeDetails",
     element: <AnimeDetails />,
   },
 ];

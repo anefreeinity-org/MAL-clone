@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Card } from "../../components/card";
 import { JikanService } from "../../services/jikan-service";
 import { useNavigate } from "react-router-dom";
+import useInfiniteScroll from "../utilities/use-infinite-scroll";
+import handleAnimeDetails from "../utilities/handle-anime-details";
 
 const PopularAnimePage = () => {
   const [popularAnime, setPopularAnime] = useState([]);
@@ -11,11 +13,6 @@ const PopularAnimePage = () => {
   const navigate = useNavigate();
   const debounceTimeout = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleViewAnimeDetails = (name) => {
-    const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`${nameWithUnderscore}`);
-  };
 
   const fetchPopularAnime = async () => {
     try {
@@ -34,21 +31,7 @@ const PopularAnimePage = () => {
   };
 
   const handleScroll = () => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    if (
-      container.scrollHeight - container.scrollTop <=
-      container.clientHeight + 1
-    ) {
-      if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
-      }
-
-      debounceTimeout.current = setTimeout(() => {
-        fetchPopularAnime();
-      }, 1000);
-    }
+    useInfiniteScroll(containerRef, debounceTimeout, fetchPopularAnime, 1000);
   };
 
   useEffect(() => {
@@ -81,12 +64,15 @@ const PopularAnimePage = () => {
             anime={anime}
             key={index}
             onClick={() => {
-              handleViewAnimeDetails(anime.title || anime.title_english);
+              handleAnimeDetails(
+                anime.title || anime.title_english,
+                anime.mal_id,
+                navigate
+              );
             }}
           />
         ))}
         {isLoading &&
-          // <p>loading...</p>
           Array.from({ length: 25 }).map((_, index) => (
             <div
               key={index}

@@ -26,4 +26,18 @@ export class JikanService {
     );
     return response;
   }
+
+  async getAnimeDetails(id) {
+    const response = await this.apiService.fetch(
+      `${this.url}/anime/${id}/full`
+    );
+    return response;
+  }
+
+  async getAnimePictures(id) {
+    const response = await this.apiService.fetch(
+      `${this.url}/anime/${id}/pictures`
+    );
+    return response;
+  }
 }
