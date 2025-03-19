@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const PopularAnime = () => {
   const [popularAnime, setPopularAnime] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const scrollContainerRef = useRef(null);
   const jikanService = new JikanService();
   const navigate = useNavigate();
@@ -15,10 +16,12 @@ export const PopularAnime = () => {
   useEffect(() => {
     const fetchPopularAnime = async () => {
       try {
+        setIsLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const popularAnime = await jikanService.getPopularAnime();
         console.log("Popular Anime:", popularAnime);
         setPopularAnime(popularAnime);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching popular anime:", error);
       }
@@ -63,6 +66,19 @@ export const PopularAnime = () => {
               }
             />
           ))}
+          {isLoading &&
+            //<p>Loading...</p>
+            Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="w-full max-w-44 h-[14.5rem] rounded-2xl border border-blue-200 p-4"
+              >
+                <div className="flex flex-col items-center animate-pulse space-y-4">
+                  <div className="w-full h-44 rounded-lg bg-gray-200"></div>
+                  <div className="m-auto w-full h-4 rounded bg-gray-200"></div>
+                </div>
+              </div>
+            ))}
         </div>
         <div className="absolute top-1/2 -translate-y-1/2 left-2 bg-transparent w-32 h-32 opacity-0 hover:opacity-100 group">
           <LeftShift scrollContainerRef={scrollContainerRef} />
