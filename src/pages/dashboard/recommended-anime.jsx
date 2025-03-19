@@ -5,9 +5,11 @@ import { Card } from "../../components/card";
 import LeftShift from "../../components/left-shift";
 import RightShift from "../../components/right-shift";
 import { useNavigate } from "react-router-dom";
+import handleAnimeDetails from "../utilities/handle-anime-details";
 
 export const RecommendedAnime = () => {
   const [recommendedAnime, setRecommendedAnime] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const scrollContainerRef = useRef(null);
   const jikanService = new JikanService();
   const navigate = useNavigate();
@@ -15,10 +17,12 @@ export const RecommendedAnime = () => {
   useEffect(() => {
     const fetchRecommendedAnime = async () => {
       try {
+        setIsLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 1500));
         const recommendedAnime = await jikanService.getRecommendedAnime();
         console.log("Recommended Anime:", recommendedAnime);
         setRecommendedAnime(recommendedAnime);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching recommended anime:", error);
       }
@@ -28,11 +32,6 @@ export const RecommendedAnime = () => {
 
   const handelViewAll = () => {
     navigate("/recommended-anime");
-  };
-
-  const handleViewAnimeDetails = (name) => {
-    const nameWithUnderscore = name.replaceAll(" ", "_");
-    navigate(`/${nameWithUnderscore}`);
   };
 
   return (
@@ -58,9 +57,27 @@ export const RecommendedAnime = () => {
               width="w-44"
               key={index}
               anime={user.entry[0]}
-              onClick={() => handleViewAnimeDetails(user.entry[0].title)}
+              onClick={() =>
+                handleAnimeDetails(
+                  user.entry[0].title || user.entry[0].title_english,
+                  user.entry[0].mal_id,
+                  navigate
+                )
+              }
             />
           ))}
+          {isLoading &&
+            Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="w-full max-w-44 h-[14.5rem] rounded-2xl border border-blue-200 p-4"
+              >
+                <div className="flex flex-col items-center animate-pulse space-y-4">
+                  <div className="w-full h-44 rounded-lg bg-gray-200"></div>
+                  <div className="m-auto w-full h-4 rounded bg-gray-200"></div>
+                </div>
+              </div>
+            ))}
         </div>
         <div className="absolute top-1/2 -translate-y-1/2 left-2 bg-transparent w-32 h-32 opacity-0 hover:opacity-100 group">
           <LeftShift scrollContainerRef={scrollContainerRef} />
