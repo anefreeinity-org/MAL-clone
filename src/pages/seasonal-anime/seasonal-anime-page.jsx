@@ -55,7 +55,7 @@ const SeasonalAnimePage = () => {
       <h2 className="px-8 pt-6 text-3xl font-bold text-gray-200 mb-4">
         Seasonal Anime
       </h2>
-      <div className="px-8 py-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+      <div className="px-8 py-4 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-8">
         {seasonalAnime.map((anime, index) => (
           <Card
             key={index}
