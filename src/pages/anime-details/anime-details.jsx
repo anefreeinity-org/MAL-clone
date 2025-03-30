@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { JikanService } from "../../services/jikan-service";
+
 const AnimeDetails = () => {
   const { animeDetails: animeDetailsRoute } = useParams();
   const [animeDetails, setAnimeDetails] = useState(null);
@@ -59,14 +60,14 @@ const AnimeDetails = () => {
             <div className="grid grid-cols-3 md:flex md:gap-7">
               <a
                 onClick={handelHome}
-                className="text-gray-200 mb-4 text-center cursor-pointer hover:text-pink-300"
+                className="text-gray-200 mb-4 text-center cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-blue-50 to-purple-50 hover:from-purple-500 hover:to-blue-500 transition duration-300"
               >
                 Home
               </a>
               <div className="text-gray-400 text-center">
                 {animeDetails.title_english}
               </div>
-              <span className="text-gray-200 mb-4 cursor-pointer text-center hover:text-pink-300">
+              <span className="text-gray-200 mb-4 cursor-pointer text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-50 to-purple-50 hover:from-purple-500 hover:to-blue-500 transition duration-500">
                 {animeDetails.duration.slice(0, 6)}
               </span>
             </div>
@@ -74,18 +75,6 @@ const AnimeDetails = () => {
               {animeDetails.title}
             </h2>
             <div className="flex flex-wrap md:gap-3 lg:gap-2 justify-center md:justify-normal mb-8">
-              <button className="flex bg-pink-300 rounded-3xl px-5 py-2 mr-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="black"
-                >
-                  <path d="M320-200v-560l440 280-440 280Z" />
-                </svg>
-                <span>Watch now</span>
-              </button>
               <button className="flex bg-gray-200 rounded-3xl px-5 py-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -116,20 +105,19 @@ const AnimeDetails = () => {
             </div>
             <div className="flex justify-center md:justify-start">
               <div className="hidden md:block text-gray-200 mt-6 mr-8">
-                <span className="text-pink-300 font-sans font-bold">
+                <span className="font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 transition duration-500">
                   Share Anime
                 </span>
                 <p>to your friends</p>
               </div>
               <div className="flex justify-center flex-col gap-2 md:hidden mt-6">
                 <div className="grid grid-cols-3">
-                  <button className="text-gray-200 rounded-3xl bg-blue-400 flex px-5 py-1 mr-2">
+                  <button className="border border-transparent text-gray-200 rounded-3xl bg-blue-400 flex items-center px-5 py-1 mr-2 hover:bg-blue-600 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       viewBox="0 0 16 16"
-                      className="mt-1"
                     >
                       <path
                         fill="#fafafa"
@@ -138,61 +126,56 @@ const AnimeDetails = () => {
                     </svg>
                     <span className="px-2">Share</span>
                   </button>
-                  <button className="text-gray-200 rounded-3xl bg-black flex px-5 py-1 mr-2">
+                  <button className="border border-transparent text-gray-200 rounded-3xl bg-black flex items-center px-5 py-1 mr-2 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      viewBox="0 0 24 24"
-                      className="mt-1"
+                      viewBox="0 0 16 16"
                     >
                       <path
                         fill="#fafafa"
-                        d="M17.9 3H21L13.4 10.9L22 21H15.6L10.2 14.8L4.9 21H1.7L9.8 12.5L1 3H7.6L12.5 8.7L17.9 3ZM16.8 19.4H18.7L6.1 4.5H4.1L16.8 19.4Z"
+                        d="M11.93 2H14L8.93 7.27L14.67 14H10.4L6.8 10.53L3.27 14H1.13L6.53 8.33L0.67 2H5.07L8.33 5.8L11.93 2ZM11.2 12.93H12.47L4.07 3H2.73L11.2 12.93Z"
                       />
                     </svg>
-
                     <span className="px-2">Tweet</span>
                   </button>
-                  <button className="text-gray-200 rounded-3xl bg-blue-600 flex px-5 py-1 mr-2">
+                  <button className="border border-transparent text-gray-200 rounded-3xl bg-blue-600 flex items-center px-5 py-1 mr-2 hover:bg-blue-700 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      viewBox="0 0 24 24"
-                      className="mt-1"
+                      viewBox="0 0 16 16"
                     >
                       <path
                         fill="#fafafa"
-                        d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.994 4.388 10.973 10.125 11.927v-8.437H7.078V12h3.047V9.356c0-3.007 1.792-4.677 4.533-4.677 1.313 0 2.688.235 2.688.235v2.96H15.74c-1.49 0-1.953.925-1.953 1.874V12h3.328l-.532 3.563h-2.796v8.437C19.612 23.046 24 18.067 24 12.073z"
+                        d="M16 8.05C16 3.6 12.418 0 8 0S0 3.6 0 8.05c0 3.996 2.925 7.315 6.75 7.951v-5.625H4.719V8h2.031V6.238C6.75 4.23 7.945 3.118 9.689 3.118c.875 0 1.792.157 1.792.157v1.973H10.49c-.993 0-1.302.617-1.302 1.25V8h2.218l-.354 2.375h-1.864v5.625C13.075 15.365 16 12.046 16 8.05z"
                       />
                     </svg>
                     <span className="px-2">Share</span>
                   </button>
                 </div>
                 <div className="flex gap-2 justify-center">
-                  <button className="text-gray-200 rounded-3xl bg-orange-600 flex px-5 py-1 mr-2">
+                  <button className="border border-transparent text-gray-200 rounded-3xl bg-orange-600 flex items-center px-3 py-1 mr-2 hover:bg-orange-700 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      viewBox="0 0 24 24"
-                      className="mt-1"
+                      viewBox="0 0 16 16"
                     >
                       <path
                         fill="#fafafa"
-                        d="M24 12.3c0-2.1-1.8-3.8-3.9-3.8-.9 0-1.8.3-2.5.9-1.7-1.2-3.9-1.9-6.1-1.9l1.3-5.9 4.1.9a2 2 0 1 0 .1-1.1L12.3.2 10.8 6a10.4 10.4 0 0 0-6.2 2 4 4 0 0 0-2.5-.9A3.9 3.9 0 0 0 0 12.3c0 1.7 1 3.2 2.5 3.8a5.2 5.2 0 0 0 2 2.5c.1 2 1.7 3.7 3.8 3.7 1.2 0 2.3-.5 3.2-1.3a4.5 4.5 0 0 0 3.2 1.3c2.1 0 3.8-1.7 3.8-3.7a5.2 5.2 0 0 0 2-2.5c1.6-.6 2.5-2.1 2.5-3.8zM7.7 15.8a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm7.8 2.7c-.8.9-1.9 1.3-3 1.3s-2.2-.5-3-1.3a.6.6 0 0 1 0-.9c.2-.2.6-.2.8 0 .7.6 1.4.9 2.2.9.8 0 1.5-.3 2.2-.9.2-.2.6-.2.8 0 .2.2.2.6 0 .9zm-.1-4.5a1.8 1.8 0 1 1 3.6 0 1.8 1.8 0 0 1-3.6 0z"
+                        d="M16 8.2c0-1.4-1.2-2.5-2.6-2.5-.6 0-1.2.2-1.7.6-1.1-.8-2.6-1.3-4.1-1.3l.9-3.9 2.7.6a1.3 1.3 0 1 0 .1-.7L8.2.1 7.2 4a6.9 6.9 0 0 0-4.1 1.3A2.6 2.6 0 0 0 .6 5.7 2.6 2.6 0 0 0 0 8.2c0 1.1.7 2.1 1.7 2.5a3.5 3.5 0 0 0 1.3 1.7c.1 1.3 1.1 2.5 2.5 2.5.8 0 1.5-.3 2.2-.9a3 3 0 0 0 2.2.9c1.4 0 2.5-1.1 2.5-2.5a3.5 3.5 0 0 0 1.3-1.7c1-.4 1.7-1.4 1.7-2.5zM5.1 10.5a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4zm5.2 1.8c-.5.6-1.2.9-2 .9s-1.5-.3-2-.9a.4.4 0 0 1 0-.6c.2-.2.4-.2.5 0 .5.4.9.6 1.4.6.5 0 1-.2 1.4-.6.2-.2.4-.2.5 0 .2.2.2.4 0 .6zm-.1-3A1.2 1.2 0 1 1 11.4 8a1.2 1.2 0 0 1-1.2 1.2z"
                       />
                     </svg>
                   </button>
-                  <button className="text-gray-200 rounded-3xl bg-lime-500 flex px-5 py-1 mr-2">
+                  <button className="border border-transparent text-gray-200 rounded-3xl bg-lime-500 flex items-center px-3 py-1 mr-2 hover:bg-lime-600 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="16px"
                       viewBox="0 -960 960 960"
                       width="16px"
                       fill="#e3e3e3"
-                      className="mt-1"
                     >
                       <path d="M680-80q-50 0-85-35t-35-85q0-6 3-28L282-392q-16 15-37 23.5t-45 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q24 0 45 8.5t37 23.5l281-164q-2-7-2.5-13.5T560-760q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-24 0-45-8.5T598-672L317-508q2 7 2.5 13.5t.5 14.5q0 8-.5 14.5T317-452l281 164q16-15 37-23.5t45-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Z" />
                     </svg>
@@ -200,13 +183,12 @@ const AnimeDetails = () => {
                 </div>
               </div>
               <div className="hidden md:flex flex-wrap md:gap-2 lg:gap-1 mt-9">
-                <button className="text-gray-200 rounded-3xl bg-blue-400 flex px-5 py-1 mr-2">
+                <button className="border border-transparent text-gray-200 rounded-3xl bg-blue-400 flex items-center px-5 py-1 mr-2 hover:bg-blue-600 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
-                    className="mt-1"
                   >
                     <path
                       fill="#fafafa"
@@ -215,59 +197,55 @@ const AnimeDetails = () => {
                   </svg>
                   <span className="px-2">Share</span>
                 </button>
-                <button className="text-gray-200 rounded-3xl bg-black flex px-5 py-1 mr-2">
+                <button className="border border-transparent text-gray-200 rounded-3xl bg-black flex items-center px-5 py-1 mr-2 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
-                    viewBox="0 0 24 24"
-                    className="mt-1"
+                    viewBox="0 0 16 16"
                   >
                     <path
                       fill="#fafafa"
-                      d="M17.9 3H21L13.4 10.9L22 21H15.6L10.2 14.8L4.9 21H1.7L9.8 12.5L1 3H7.6L12.5 8.7L17.9 3ZM16.8 19.4H18.7L6.1 4.5H4.1L16.8 19.4Z"
+                      d="M11.93 2H14L8.93 7.27L14.67 14H10.4L6.8 10.53L3.27 14H1.13L6.53 8.33L0.67 2H5.07L8.33 5.8L11.93 2ZM11.2 12.93H12.47L4.07 3H2.73L11.2 12.93Z"
                     />
                   </svg>
 
                   <span className="px-2">Tweet</span>
                 </button>
-                <button className="text-gray-200 rounded-3xl bg-blue-600 flex px-5 py-1 mr-2">
+                <button className="border border-transparent text-gray-200 rounded-3xl bg-blue-600 flex items-center px-5 py-1 mr-2 hover:bg-blue-800 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
-                    viewBox="0 0 24 24"
-                    className="mt-1"
+                    viewBox="0 0 16 16"
                   >
                     <path
                       fill="#fafafa"
-                      d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.994 4.388 10.973 10.125 11.927v-8.437H7.078V12h3.047V9.356c0-3.007 1.792-4.677 4.533-4.677 1.313 0 2.688.235 2.688.235v2.96H15.74c-1.49 0-1.953.925-1.953 1.874V12h3.328l-.532 3.563h-2.796v8.437C19.612 23.046 24 18.067 24 12.073z"
+                      d="M16 8.05C16 3.6 12.418 0 8 0S0 3.6 0 8.05c0 3.996 2.925 7.315 6.75 7.951v-5.625H4.719V8h2.031V6.238C6.75 4.23 7.945 3.118 9.689 3.118c.875 0 1.792.157 1.792.157v1.973H10.49c-.993 0-1.302.617-1.302 1.25V8h2.218l-.354 2.375h-1.864v5.625C13.075 15.365 16 12.046 16 8.05z"
                     />
                   </svg>
                   <span className="px-2">Share</span>
                 </button>
-                <button className="text-gray-200 rounded-3xl bg-orange-600 flex px-5 py-1 mr-2">
+                <button className="border border-transparent text-gray-200 rounded-3xl bg-orange-600 flex items-center px-5 py-1 mr-2 hover:bg-orange-700 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
-                    viewBox="0 0 24 24"
-                    className="mt-1"
+                    viewBox="0 0 16 16"
                   >
                     <path
                       fill="#fafafa"
-                      d="M24 12.3c0-2.1-1.8-3.8-3.9-3.8-.9 0-1.8.3-2.5.9-1.7-1.2-3.9-1.9-6.1-1.9l1.3-5.9 4.1.9a2 2 0 1 0 .1-1.1L12.3.2 10.8 6a10.4 10.4 0 0 0-6.2 2 4 4 0 0 0-2.5-.9A3.9 3.9 0 0 0 0 12.3c0 1.7 1 3.2 2.5 3.8a5.2 5.2 0 0 0 2 2.5c.1 2 1.7 3.7 3.8 3.7 1.2 0 2.3-.5 3.2-1.3a4.5 4.5 0 0 0 3.2 1.3c2.1 0 3.8-1.7 3.8-3.7a5.2 5.2 0 0 0 2-2.5c1.6-.6 2.5-2.1 2.5-3.8zM7.7 15.8a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm7.8 2.7c-.8.9-1.9 1.3-3 1.3s-2.2-.5-3-1.3a.6.6 0 0 1 0-.9c.2-.2.6-.2.8 0 .7.6 1.4.9 2.2.9.8 0 1.5-.3 2.2-.9.2-.2.6-.2.8 0 .2.2.2.6 0 .9zm-.1-4.5a1.8 1.8 0 1 1 3.6 0 1.8 1.8 0 0 1-3.6 0z"
+                      d="M16 8.2c0-1.4-1.2-2.5-2.6-2.5-.6 0-1.2.2-1.7.6-1.1-.8-2.6-1.3-4.1-1.3l.9-3.9 2.7.6a1.3 1.3 0 1 0 .1-.7L8.2.1 7.2 4a6.9 6.9 0 0 0-4.1 1.3A2.6 2.6 0 0 0 .6 5.7 2.6 2.6 0 0 0 0 8.2c0 1.1.7 2.1 1.7 2.5a3.5 3.5 0 0 0 1.3 1.7c.1 1.3 1.1 2.5 2.5 2.5.8 0 1.5-.3 2.2-.9a3 3 0 0 0 2.2.9c1.4 0 2.5-1.1 2.5-2.5a3.5 3.5 0 0 0 1.3-1.7c1-.4 1.7-1.4 1.7-2.5zM5.1 10.5a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4zm5.2 1.8c-.5.6-1.2.9-2 .9s-1.5-.3-2-.9a.4.4 0 0 1 0-.6c.2-.2.4-.2.5 0 .5.4.9.6 1.4.6.5 0 1-.2 1.4-.6.2-.2.4-.2.5 0 .2.2.2.4 0 .6zm-.1-3A1.2 1.2 0 1 1 11.4 8a1.2 1.2 0 0 1-1.2 1.2z"
                     />
                   </svg>
                 </button>
-                <button className="text-gray-200 rounded-3xl bg-lime-500 flex px-5 py-1 mr-2">
+                <button className="border border-transparent text-gray-200 rounded-3xl bg-lime-500 flex items-center px-5 py-1 mr-2 hover:bg-lime-600 hover:scale-110 hover:border-white transition-all duration-300 ease-in-out">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="16px"
                     viewBox="0 -960 960 960"
                     width="16px"
                     fill="#e3e3e3"
-                    className="mt-1"
                   >
                     <path d="M680-80q-50 0-85-35t-35-85q0-6 3-28L282-392q-16 15-37 23.5t-45 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q24 0 45 8.5t37 23.5l281-164q-2-7-2.5-13.5T560-760q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-24 0-45-8.5T598-672L317-508q2 7 2.5 13.5t.5 14.5q0 8-.5 14.5T317-452l281 164q16-15 37-23.5t45-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Z" />
                   </svg>
@@ -318,10 +296,17 @@ const AnimeDetails = () => {
                 {animeDetails.score}
               </span>
             </h3>
-            <h3 className="text-gray-200 font-sans font-bold mb-2">
+            <h3 className="text-gray-200 font-sans font-bold mb-2 flex">
               Genres:{" "}
-              <span className="text-gray-300 font-normal">
-                {animeDetails.genres.map((gener) => gener.name).join(", ")}
+              <span className="text-gray-300 font-normal flex flex-wrap gap-1 ml-1">
+                {animeDetails.genres.map((genre) => (
+                  <span
+                    key={genre.name}
+                    className="border border-gray-500 hover:border-white hover:bg-gray-700 text-gray-200 px-2 py-0.5 rounded-3xl cursor-pointer hover:scale-105 duration-300 transition-all ease-in-out"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
               </span>
             </h3>
             <h3 className="text-gray-200 font-sans font-bold mb-2">
