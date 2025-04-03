@@ -4,40 +4,60 @@ import { DashBoard } from "./dashboard/dashboard";
 import PopularAnimePage from "./popular-anime/popular-anime-page";
 import RecommendedAnimePage from "./recommended-anime/recommended-anime-page";
 import SeasonalAnimePage from "./seasonal-anime/seasonal-anime-page";
+import Header from "../components/header";
 
 const routes = [
   {
     path: "/",
-    element: <DashBoard />,
-    errorElement: <p>Page is not found</p>,
+    element: (
+      <>
+        <Header />
+        <DashBoard />
+      </>
+    ),
   },
   {
     path: "/seasonal-anime",
-    element: <SeasonalAnimePage />,
+    element: (
+      <>
+        <Header />
+        <SeasonalAnimePage />
+      </>
+    ),
   },
   {
     path: "/recommended-anime",
-    element: <RecommendedAnimePage />,
+    element: (
+      <>
+        <Header />
+        <RecommendedAnimePage />
+      </>
+    ),
   },
   {
     path: "/popular-anime",
-    element: <PopularAnimePage />,
+    element: (
+      <>
+        <Header />
+        <PopularAnimePage />
+      </>
+    ),
   },
   {
     path: ":animeDetails",
-    element: <AnimeDetails />,
+    element: (
+      <>
+        <Header />
+        <AnimeDetails />
+      </>
+    ),
   },
 ];
 
 const browserRouter = createBrowserRouter(routes);
 
 const Root = () => {
-  return (
-    <div className="relative flex flex-col">
-      {/* <div className="text-white top-0 left-0 sticky">header</div> */}
-      <RouterProvider router={browserRouter} />
-    </div>
-  );
+  return <RouterProvider router={browserRouter} />;
 };
 
 export default Root;

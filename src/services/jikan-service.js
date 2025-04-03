@@ -40,4 +40,11 @@ export class JikanService {
     );
     return response;
   }
+
+  async searchAnime(query, page = 1) {
+    const response = await this.apiService.fetch(
+      `${this.url}/anime?q=${query}&page=${page}&sfw=true&order_by=popularity`
+    );
+    return response;
+  }
 }
