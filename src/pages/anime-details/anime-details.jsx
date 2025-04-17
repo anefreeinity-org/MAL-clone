@@ -18,6 +18,7 @@ const AnimeDetails = () => {
     const fragments = animeDetailsRoute.split("-");
     const id = fragments[fragments.length - 1];
     console.log(id);
+    console.log(fragments[0]);
 
     const fetchAnimeDetails = async () => {
       try {
@@ -48,7 +49,7 @@ const AnimeDetails = () => {
       {animeDetails && (
         <div className="grid w-full md:grid-flow-col grid-cols-1 md:auto-cols-auto md:gap-4">
           <div className="w-full flex justify-center md:block md:w-60 pt-16 md:pl-10">
-            {animePictures.length > 1 && (
+            {animePictures.length > 0 && (
               <img
                 src={animePictures[0].jpg.large_image_url}
                 alt=""
@@ -304,7 +305,7 @@ const AnimeDetails = () => {
                     key={genre.name}
                     className="border border-gray-500 hover:border-white hover:bg-gray-700 text-gray-200 px-2 py-0.5 rounded-3xl cursor-pointer hover:scale-105 duration-300 transition-all ease-in-out"
                   >
-                    {genre.name}
+                    {genre.name ?? ""}
                   </span>
                 ))}
               </span>
@@ -312,14 +313,15 @@ const AnimeDetails = () => {
             <h3 className="text-gray-200 font-sans font-bold mb-2">
               Studios:{" "}
               <span className="text-gray-300 font-normal">
-                {animeDetails.studios[0].name}
+                {animeDetails.studios.length > 0 &&
+                  (animeDetails.studios[0].name ?? "")}
               </span>
             </h3>
             <h3 className="text-gray-200 font-sans font-bold mb-2">
               Producers:{" "}
               <span className="text-gray-300 font-normal">
                 {animeDetails.producers
-                  .map((producer) => producer.name)
+                  .map((producer) => producer.name ?? "")
                   .join(", ")}
               </span>
             </h3>
