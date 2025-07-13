@@ -1,3 +1,4 @@
+import Login from "../login/log-in";
 import { PopularAnime } from "./popular-anime";
 import { RecommendedAnime } from "./recommended-anime";
 import { SeasonalAnime } from "./seasonal-anime";

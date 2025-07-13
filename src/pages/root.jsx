@@ -5,6 +5,7 @@ import PopularAnimePage from "./popular-anime/popular-anime-page";
 import RecommendedAnimePage from "./recommended-anime/recommended-anime-page";
 import SeasonalAnimePage from "./seasonal-anime/seasonal-anime-page";
 import Header from "../components/header";
+import Login from "./login/log-in";
 
 const routes = [
   {
@@ -40,6 +41,14 @@ const routes = [
       <>
         <Header />
         <PopularAnimePage />
+      </>
+    ),
+  },
+  {
+    path: "/log-in",
+    element: (
+      <>
+        <Login />
       </>
     ),
   },
