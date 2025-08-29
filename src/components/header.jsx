@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "./autocomplete";
+import { useState } from "react";
+import Dialog from "./dialog";
+import LoginFrom from "./login-form";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(null)
   const navigate = useNavigate();
 
   const handelLogin = () => {
@@ -29,6 +33,17 @@ const Header = () => {
           </button>
         </div>
       </div>
+      <div className="flex justify-center">
+        <button
+          className="absolute border-2 bg-gradient-to-r from-slate-500 hover:from-slate-800 hover:to-slate-500 transition-all duration-700 px-3 py-1 rounded-3xl md:right-2 md:top-3/4 -mt-5 transform -translate-y-1/2"
+          onClick={() => setIsOpen(true)}
+        >
+          login
+        </button>
+      </div>
+      <Dialog width="w-[90%] md:w-1/2" isOpen={isOpen} setIsOpen={setIsOpen}>
+        <LoginFrom onSuccessfulSubmit={() => setIsOpen(false)} />
+      </Dialog>
     </nav>
   );
 };
