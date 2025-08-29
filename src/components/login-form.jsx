@@ -13,7 +13,7 @@ const LoginFrom = ({ onSuccessfulSubmit }) => {
     <form className="flex flex-col px-5 py-3 gap-4" onSubmit={handelSubmit}>
       <div className="flex flex-row items-center justify-center">
         <input
-          className="px-3 bg-gray-800 border-2 md:w-[85%] border-gray-400 py-2 rounded-xl"
+          className="px-3 bg-gray-800 border-2 md:w-[85%] w-full border-gray-400 py-2 rounded-xl"
           type="text"
           name="email"
           placeholder="Email"
@@ -21,7 +21,7 @@ const LoginFrom = ({ onSuccessfulSubmit }) => {
       </div>
       <div className="flex flex-row items-center justify-center">
         <input
-          className="px-3 bg-gray-800 border-2 md:w-[85%] border-gray-400 py-2 rounded-xl"
+          className="px-3 bg-gray-800 border-2 md:w-[85%] w-full border-gray-400 py-2 rounded-xl"
           type="password"
           name="password"
           placeholder="Password"
