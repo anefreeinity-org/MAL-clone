@@ -6,6 +6,9 @@ import RecommendedAnimePage from "./recommended-anime/recommended-anime-page";
 import SeasonalAnimePage from "./seasonal-anime/seasonal-anime-page";
 import Header from "../components/header";
 import Login from "./login/log-in";
+import CreateNewAccount from "./login/create-new-account";
+import Profile from "./profile/profile";
+import { profileTabs } from "./profile/profiletabs.jsx";
 
 const routes = [
   {
@@ -51,6 +54,23 @@ const routes = [
         <Login />
       </>
     ),
+  },
+  {
+    path: "/create-new-account",
+    element: (
+      <>
+        <CreateNewAccount />
+      </>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <>
+        <Profile />
+      </>
+    ),
+    children: profileTabs,
   },
   {
     path: ":animeDetails",

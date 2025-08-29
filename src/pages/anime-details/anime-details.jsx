@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { JikanService } from "../../services/jikan-service";
+import Addtolist from "../../components/addtolist";
 
 const AnimeDetails = () => {
   const { animeDetails: animeDetailsRoute } = useParams();
@@ -75,18 +76,7 @@ const AnimeDetails = () => {
               {animeDetails.title}
             </h2>
             <div className="flex flex-wrap md:gap-3 lg:gap-2 justify-center md:justify-normal mb-8">
-              <button className="flex bg-gray-200 rounded-3xl px-5 py-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="black"
-                >
-                  <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
-                </svg>
-                Add to List
-              </button>
+              <Addtolist />
             </div>
             <div className="text-gray-200 text-justify">
               <p
